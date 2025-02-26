@@ -1,0 +1,171 @@
+/* ===== 基础变量 ===== */
+:root {
+  --color-primary: #1a73e8;
+  --color-error: #ff4444;
+  --color-bg-user: #e2f0ff;
+  --color-bg-assistant: #f3f4f6;
+  --color-hover: rgba(0, 0, 0, 0.05);
+  --transition-default: all 0.3s ease-in-out;
+  --padding: 0.75rem;
+  --border-radius: 1.25rem;
+}
+
+/* ===== 通用消息样式 ===== */
+#chatMessages {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) transparent;
+}
+
+.message {
+  --max-width: min(80%, 720px);
+  --horizontal-padding: 1.25rem;
+  --vertical-padding: 1rem;
+  position: relative;
+  max-width: var(--max-width);
+  padding: var(--vertical-padding) var(--horizontal-padding);
+  margin: 0.75rem 0;
+  border-radius: var(--border-radius);
+  transition: var(--transition-default);
+  animation: messageAppear 0.3s ease-out;
+}
+
+.message-content {
+  white-space: pre-wrap; /* 保留空格和换行 */
+}
+
+@keyframes messageAppear {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== 消息类型变体 ===== */
+.user-message {
+  background: var(--color-bg-user);
+  margin-left: auto;
+  border-end-end-radius: 4px;
+}
+
+.assistant-message {
+  background: var(--color-bg-assistant);
+  margin-right: auto;
+  border-end-start-radius: 4px;
+}
+
+/* ===== 对话列表样式 ===== */
+.conversation-item {
+  position: relative;
+  padding: var(--padding);
+  margin: 2px 0;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: var(--transition-default);
+}
+
+.conversation-item:hover {
+  background: var(--color-hover);
+}
+
+.conversation-item.selected {
+  background: var(--color-bg-user);
+  font-weight: 500;
+}
+
+/* ===== 删除按钮组件 ===== */
+.delete-btn {
+  --size: 24px;
+  --offset: 8px;
+  position: absolute;
+  top: 50%;
+  right: var(--offset);
+  width: var(--size);
+  height: var(--size);
+  transform: translateY(-50%);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--color-error);
+  cursor: pointer;
+  transition: var(--transition-default);
+}
+
+.delete-btn::before {
+  content: "×";
+  font-size: 1.4em;
+  line-height: 1;
+}
+
+.delete-btn:hover {
+  color: color-mix(in srgb, var(--color-error) 90%, black);
+}
+
+/* ===== 删除状态动画 ===== */
+.message.deleting, .conversation-item.deleting {
+  position: relative;
+  overflow: hidden;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.message.deleting::after, .conversation-item.deleting::after {
+  content: "删除中...";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-error);
+  font-weight: 500;
+  animation: deletingPulse 1.2s infinite;
+}
+
+@keyframes deletingPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ===== 响应式优化 ===== */
+@media (max-width: 768px) {
+  .message {
+    --max-width: 90%;
+    --horizontal-padding: 1rem;
+  }
+
+  .delete-btn {
+    --size: 20px;
+    --offset: 4px;
+    opacity: 0.8;
+  }
+}
+
+/* ===== 发送按钮 ===== */
+.send-btn {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.send-btn:hover {
+  background-color: darkblue;
+}
+
+/* ===== 输入框容器 ===== */
+.input-container {
+  position: relative;
+  width: 100%;
+  padding-right: 60px;
+}
+
+
+
+
+

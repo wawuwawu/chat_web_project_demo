@@ -1,0 +1,9 @@
+/* src/css/input.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 可添加自定义CSS */
+.custom-class {
+  @apply text-blue-500 font-bold;
+}

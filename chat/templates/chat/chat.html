@@ -1,0 +1,48 @@
+{% extends "chat/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="flex h-screen bg-gray-50">
+  <aside class="w-64 bg-white border-r flex flex-col">
+    <div class="p-4 space-y-4">
+      <button id="newChatBtn" class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">新建对话</button>
+      <div class="relative">
+        <select id="modelSelector" class="w-full pl-3 pr-8 py-2 border rounded-lg bg-white appearance-none focus:ring-2 focus:ring-blue-500">
+          <option value="" disabled selected>选择模型...</option>
+        </select>
+      </div>
+    </div>
+    <nav id="conversationList" class="flex-1 overflow-y-auto p-2 space-y-1"></nav>
+  </aside>
+
+  <main class="flex-1 flex flex-col">
+    <section id="chatMessages" class="flex-1 overflow-y-auto p-4 space-y-4"></section>
+    <footer class="p-4 bg-white border-t">
+      <textarea id="messageInput" class="w-full px-4 py-4 pr-16 border rounded-xl resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" rows="2" placeholder="输入消息..."></textarea>
+      <button id="sendBtn" class="absolute right-10 bottom-10 p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50">
+        发送
+      </button>
+    </footer>
+  </main>
+</div>
+
+
+<!-- 在聊天界面中添加加载指示器 -->
+<div id="loadingIndicator" style="display: none;">
+  <div class="spinner"></div>
+  <span>加载中...</span>
+</div>
+
+<!-- HTML 中的 loadingOverlay 元素 -->
+<div id="loadingOverlay" class="overlay">Loading...</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="{% static '/chat/script.js' %}"></script>
+{% endblock %}
+
+{% block scripts %}
+{% block scripts %}
+<script src="{% static '/chat/script.js' %}"></script>
+{% endblock %}
+{% endblock %}
